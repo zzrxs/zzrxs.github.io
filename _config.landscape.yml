@@ -1,0 +1,41 @@
+menu:
+  首页: /
+  归档: /archives
+  分类: /categories
+  标签: /tags
+  关于: /about
+
+rss:
+banner: images/banner.jpg
+subtitle: 记录、思考与分享
+links:
+
+excerpt_link: 阅读全文
+fancybox: true
+
+copyright: |-
+  本站内容除特别声明外，均采用
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans" target="_blank" rel="license noopener">CC BY-NC-SA 4.0</a>
+  许可协议。
+
+sidebar: right
+widgets:
+  - category
+  - tag
+  - archive
+  - recent_posts
+
+archive_type: monthly
+show_count: true
+recent_posts_limits: 5
+
+google_analytics:
+gauges_analytics:
+favicon: /favicon.png
+twitter:
+fb_admins:
+fb_app_id:
+
+disqus_shortname:
+valine:
+  enable: false
