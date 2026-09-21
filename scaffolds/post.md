@@ -7,8 +7,8 @@ tags:
 description:
 ---
 
-在这里写一段文章摘要。
+Write a short summary here.
 
 <!-- more -->
 
-## 正文
+## Introduction

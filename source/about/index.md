@@ -1,10 +1,10 @@
 ---
-title: 关于
+title: About
 date: 2026-09-20 00:00:00
-type: about
-comments: false
+layout: about
+comment: false
 ---
 
-这里是你的个人介绍页。
+Hi! I'm Zerui Zhao.
 
-你可以写下自己关注的领域、创建博客的初衷，以及读者联系你的方式。
+This blog is where I document what I learn, build, and think about. More details will be added as the blog grows.

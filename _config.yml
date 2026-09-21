@@ -3,20 +3,21 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 我的博客
-subtitle: 记录、思考与分享
-description: 一个持续记录学习、思考与生活的个人博客
+title: ZZR's Blog
+subtitle: Je pense, donc je suis
+description: A personal blog about learning, technology, and life.
 keywords:
-  - 博客
-  - 随笔
-  - 学习笔记
-author: ''
-language: zh-CN
+  - blog
+  - technology
+  - notes
+author: Zerui Zhao
+language: en
 timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://example.com
+# url: https://example.com
+url: https://zzrxs.github.io
 permalink: posts/:title/
 permalink_defaults:
 pretty_urls:
@@ -68,7 +69,7 @@ index_generator:
   order_by: -date
 
 # Category & Tag
-default_category: 随笔
+default_category: Notes
 category_map:
 tag_map:
 
@@ -99,7 +100,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: fluid
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
