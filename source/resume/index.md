@@ -2,11 +2,12 @@
 title: Resume
 date: 2026-09-21 00:00:00
 comment: false
+banner_img: /img/home-banner.jpg
 ---
 
 <div class="markdown-body">
 
-# Zerui Zhao （赵泽睿）
+## Zerui Zhao （赵泽睿）
 
 <!-- A short professional summary goes here.
 

@@ -239,6 +239,7 @@ custom_js:
 # 指定自定义 .css 文件路径，用法和 custom_js 相同
 # The usage is the same as custom_js
 custom_css:
+  - /css/custom.css
 
 # 网页访问统计
 # Analysis of website visitors
@@ -681,11 +682,11 @@ post:
 
     # 目录会选择这些节点作为标题
     # TOC will select these nodes as headings
-    headingSelector: "h1,h2,h3,h4,h5,h6"
+    headingSelector: "h1,h2,h3,h4"
 
     # 层级的折叠深度，0 是全部折叠，大于 0 后如果存在下级标题则默认展开
     # Collapse depth. If 0, all headings collapsed. If greater than 0, it will be expanded by default if there are sub headings
-    collapseDepth: 0
+    collapseDepth: 4
 
   # 版权声明，会显示在每篇文章的结尾
   # Copyright, will be displayed at the end of each post
@@ -744,11 +745,11 @@ post:
   math:
     # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `math: true`
     # If you want to use math on the custom page, you need to set `math: true` in Front-matter
-    enable: false
+    enable: true
 
     # 开启后，只有在文章 Front-matter 里指定 `math: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
     # If true, only set `math: true` in Front-matter will enable math, to load faster when the page does not contain math
-    specific: false
+    specific: true
 
     # Options: mathjax | katex
     engine: mathjax
@@ -946,7 +947,7 @@ discuss:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/default.jpg
+  banner_img: /img/home-banner.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -957,7 +958,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/default.jpg
+  banner_img: /img/home-banner.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -986,7 +987,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/default.jpg
+  banner_img: /img/home-banner.jpg
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:

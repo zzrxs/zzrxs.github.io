@@ -1,0 +1,19 @@
+/* Avoid clipping an entire TOC branch to two lines. */
+#toc-body .toc-list-item {
+  display: block;
+  -webkit-box-orient: initial;
+  -webkit-line-clamp: unset;
+  text-overflow: clip;
+}
+
+/* Expanded branches */
+#toc-body .tocbot-is-collapsible:not(.tocbot-is-collapsed) {
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Collapsed branches: content must not overflow. */
+#toc-body .tocbot-is-collapsed {
+  max-height: 0 !important;
+  overflow: hidden !important;
+}
