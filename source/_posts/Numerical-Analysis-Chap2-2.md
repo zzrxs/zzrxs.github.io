@@ -644,7 +644,7 @@ $$
 设待求点靠近表格起点 $x_0$，令
 
 $$
-x=x_0+th,qquad t=\frac{x-x_0}{h}.
+x=x_0+th,\qquad t=\frac{x-x_0}{h}.
 $$
 
 注意
