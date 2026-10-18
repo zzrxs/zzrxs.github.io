@@ -135,3 +135,163 @@
     border-left: 0;
   }
 }
+
+/* Blog password screen */
+html.blog-is-locked {
+  overflow: hidden;
+}
+
+html.blog-is-locked body > :not(.blog-lock) {
+  visibility: hidden;
+}
+
+.blog-lock {
+  position: fixed;
+  z-index: 100000;
+  inset: 0;
+
+  display: grid;
+  place-items: center;
+
+  min-height: 100vh;
+  padding: 24px;
+
+  background:
+    linear-gradient(rgb(0 0 0 / 42%), rgb(0 0 0 / 42%)),
+    url("/img/home-banner.jpg") center / cover no-repeat;
+}
+
+.blog-lock__card {
+  width: min(100%, 400px);
+  padding: 38px 34px 34px;
+
+  color: #eee;
+  text-align: center;
+
+  background: rgb(18 18 18 / 82%);
+  border: 1px solid rgb(255 255 255 / 18%);
+  border-radius: 4px;
+}
+
+.blog-lock__avatar {
+  display: block;
+
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+
+  object-fit: cover;
+
+  border: 1px solid rgb(255 255 255 / 45%);
+  border-radius: 50%;
+}
+
+.blog-lock__eyebrow {
+  margin: 0 0 8px;
+
+  color: #aaa;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.blog-lock__card h1 {
+  margin: 0;
+
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.blog-lock__description {
+  max-width: 300px;
+  margin: 10px auto 28px;
+
+  color: #bbb;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.blog-lock__form {
+  text-align: left;
+}
+
+.blog-lock__form label {
+  display: block;
+  margin-bottom: 7px;
+
+  color: #ccc;
+  font-size: 0.8rem;
+}
+
+.blog-lock__input-row {
+  display: block;
+}
+
+.blog-lock__input-row input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 0;
+
+  color: #fff;
+  font: inherit;
+
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #888;
+  border-radius: 0;
+  outline: none;
+}
+
+.blog-lock__input-row input::placeholder {
+  color: #777;
+}
+
+.blog-lock__input-row input:focus {
+  border-bottom-color: #fff;
+}
+
+.blog-lock__input-row button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 10px 16px;
+
+  color: #222;
+  font: inherit;
+
+  cursor: pointer;
+  background: #eee;
+  border: 1px solid #eee;
+  border-radius: 2px;
+}
+
+.blog-lock__input-row button:hover {
+  color: #fff;
+  background: transparent;
+}
+
+.blog-lock__input-row button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.blog-lock__message {
+  min-height: 1.4em;
+  margin: 12px 0 0;
+
+  color: #aaa;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.blog-lock__message.is-error {
+  color: #e1a5a5;
+}
+
+@media (max-width: 480px) {
+  .blog-lock__card {
+    padding: 32px 24px 28px;
+  }
+}
+

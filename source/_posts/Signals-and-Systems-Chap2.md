@@ -850,8 +850,8 @@ Associativity requires care when infinite sums are not absolutely convergent. Co
 :::
 
 $$
-x_1[n]=1,qquad
-x_2[n]=u[n],qquad
+x_1[n]=1,\qquad
+x_2[n]=u[n],\qquad
 x_3[n]=\delta[n]-\delta[n-1].
 $$
 
