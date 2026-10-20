@@ -346,7 +346,7 @@ $$
    $$
    ca\equiv cb\pmod n
    \iff
-   a\equiv b\pmod{n/d}.
+   a\equiv b\pmod{n/c}.
    $$
 
    特别地，当 $\gcd(c,n)=1$ 时，可以在模 $n$ 同余式两边消去 $c$。
