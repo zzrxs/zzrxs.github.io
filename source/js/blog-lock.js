@@ -1,5 +1,5 @@
 (() => {
-  const PASSWORD_HASH = "f48ade059deb8df96530de475610ba59333547de84853d13c17031b6ee2c921e";
+  const PASSWORD_HASH = "9553627933b214db60798fe40d2b4f8497781d024f53d62dc1b12469b7d53784";
   const SESSION_KEY = "blog-unlocked-v1";
 
   function isUnlocked() {
