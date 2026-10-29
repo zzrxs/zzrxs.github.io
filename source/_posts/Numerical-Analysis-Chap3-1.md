@@ -6,12 +6,12 @@ math: true
 categories:
   - Numerical Analysis
 tags:
-  - 数值分析
-  - 函数逼近
-  - 最佳一致逼近
-  - 最佳平方逼近
-  - 正交多项式
-  - 最小二乘法
+  - Numerical Analysis
+  - Function Approximation
+  - Best Uniform Approximation
+  - Best Square Approximation
+  - Orthogonal Polynomials
+  - Least Squares
 description: Numerical Analysis Course Notes (3-1-Best uniform approximation, best square approximation, Legendre and Chebyshev polynomials, and least-squares fitting for discrete data.)
 ---
 
