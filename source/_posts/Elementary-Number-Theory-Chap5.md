@@ -11,7 +11,7 @@ tags:
   - Wilson's Theorem
   - Pseudoprime
   - Carmichael Number
-description: 初等数论笔记（五）：有限域上的多项式、Fermat 与 Wilson 定理、伪素数和 Carmichael 数
+description: Elementary Number Theory Notes (5):Polynomials over finite fields, Fermat's and Wilson's Theorems, Pseudoprimes and Carmichael Numbers
 ---
 
 当模数 $p$ 为素数时，$\mathbb Z_p$ 是一个 field，非零元素都可逆。这一事实带来多项式根数上界、Fermat's little theorem 与 Wilson's theorem，并进一步产生快速素性检验。不过 Fermat 检验并非完美：pseudoprimes 和 Carmichael numbers 会“伪装”成素数。

@@ -10,7 +10,7 @@ tags:
   - Congruence
   - Residue Class
   - Linear Congruence
-description: 初等数论笔记（三）：同余、剩余类、模运算、多项式同余与线性同余方程
+description: Elementary Number Theory Notes (3):Congruence, Residue Class, Modular Arithmetic, Polynomial Congruence and Linear Congruence Equation
 ---
 
 同余可以看作一种“受控的相等”：我们不要求两个整数本身相同，只要求它们相差模数的整数倍。本章从等价关系出发构造剩余类环 $\mathbb Z_n$，讨论多项式在模运算下的性质，最后完整解决线性同余方程 $ax\equiv b\pmod n$。

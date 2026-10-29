@@ -10,7 +10,7 @@ tags:
   - Divisibility
   - Euclidean Algorithm
   - Diophantine Equation
-description: 初等数论笔记（一）：整除、Euclidean algorithm、Bézout identity 与线性 Diophantine equation
+description: Elementary Number Theory Notes (1):Division, Euclidean algorithm, Bézout identity and Linear Diophantine equation
 ---
 
 本章从整数的带余除法出发，建立整除、最大公因数与最小公倍数的基本理论。Euclidean algorithm 不仅能计算最大公因数，反向回代后还会给出 Bézout identity；这又完整地解决了二元一次不定方程 $ax+by=c$ 的可解性与全部整数解。

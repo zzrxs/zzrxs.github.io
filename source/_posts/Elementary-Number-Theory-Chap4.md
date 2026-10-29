@@ -10,7 +10,7 @@ tags:
   - Chinese Remainder Theorem
   - Congruence
   - Polynomial Congruence
-description: 初等数论笔记（四）：Chinese Remainder Theorem、环同构、多项式同余与广义 CRT
+description: Elementary Number Theory Notes (4):Chinese Remainder Theorem, Ring Isomorphism, Polynomial Congruence and Generalized CRT
 ---
 
 Chinese Remainder Theorem（CRT）说明：若若干模数两两互素，那么分别给出的同余条件可以无冲突地合并成一个模乘积的同余类。本章不仅给出显式构造与证明，还讨论它的环论形式、多项式根的分解，以及模数不互素时的广义版本。

@@ -461,7 +461,7 @@ $$
 在每个区间 $[x_k,x_{k+1}]$ 上，可以把 $s_k(x)$ 写成以
 
 $$
-y_k,quad y_{k+1},quad m_k,quad m_{k+1}
+y_k,\quad y_{k+1},\quad m_k,\quad m_{k+1}
 $$
 
 为数据的两点三次 Hermite 多项式。未知量变成全部节点斜率

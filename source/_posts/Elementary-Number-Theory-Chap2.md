@@ -11,7 +11,7 @@ tags:
   - Fundamental Theorem of Arithmetic
   - Mersenne Prime
   - Fermat Number
-description: 初等数论笔记（二）：素因数分解、素数的无穷性与分布、Fermat 数和 Mersenne 数
+description: Elementary Number Theory Notes (2):Prime factorization, Infinitude and distribution of prime numbers, Fermat numbers and Mersenne numbers
 ---
 
 素数是整数乘法结构的“原子”。本章先证明 Fundamental Theorem of Arithmetic，说明每个正整数都能且只能以一种方式分解为素数幂；随后讨论素数的无穷性与总体分布，并介绍 Fermat numbers、Mersenne numbers 及若干相关结论。
