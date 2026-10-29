@@ -12,7 +12,7 @@ tags:
   - 最佳平方逼近
   - 正交多项式
   - 最小二乘法
-description: 数值分析课程笔记：最佳一致逼近、最佳平方逼近、Legendre 与 Chebyshev 多项式，以及离散数据的最小二乘拟合。
+description: Numerical Analysis Course Notes (3-1-Best uniform approximation, best square approximation, Legendre and Chebyshev polynomials, and least-squares fitting for discrete data.)
 ---
 
 插值要求近似函数在指定节点上与原函数完全相等，而函数逼近更关心近似函数在整个区间上的总体表现。本章讨论两个核心问题：怎样定义“最接近”，以及在给定的低维函数空间中怎样真正求出最优近似。
