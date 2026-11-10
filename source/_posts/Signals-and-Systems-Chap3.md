@@ -1,7 +1,7 @@
 ---
 title: Signals and Systems Chapter-3
 date: 2026-10-29 11:14:41
-updated: 2026-10-29
+updated: 2026-11-7
 math: true
 categories:
   - Signals and Systems
@@ -11,6 +11,9 @@ tags:
   - Continuous-Time Signals
   - Harmonic Analysis
   - Convergence
+  - Discrete-Time Fourier Series
+  - Frequency Response
+  - Digital Filters
 description: Signals and Systems Course Notes (Chapter-3)
 index_img: /img/PeriodicComplexExponentialSignals.png
 ---
@@ -1680,7 +1683,7 @@ The quantity $|a_k|^2$ is the average power carried by the $k$th orthonormal har
 Assume all signals use the same fundamental frequency unless stated otherwise.
 
 | Time-domain operation | Fourier-series coefficients |
-|---|---|
+| --- | --- |
 | $Ax(t)+By(t)$ | $Aa_k+Bb_k$ |
 | $x(t-t_0)$ | $e^{-jk\omega_0t_0}a_k$ |
 | $e^{jM\omega_0t}x(t)$ | $a_{k-M}$ |
@@ -1691,13 +1694,14 @@ Assume all signals use the same fundamental frequency unless stated otherwise.
 | $x(t)y(t)$ | $\sum_m a_mb_{k-m}$ |
 | $x(t)\circledast_Ty(t)$ | $Ta_kb_k$ |
 | $x^*(t)$ | $a_{-k}^*$ |
+
 :::
 
 ::: {.bi-zh lang="zh-CN"}
 除非另有说明，假设所有信号使用相同的基波频率。
 
 | 时域运算 | 傅里叶级数系数 |
-|---|---|
+| --- | --- |
 | $Ax(t)+By(t)$ | $Aa_k+Bb_k$ |
 | $x(t-t_0)$ | $e^{-jk\omega_0t_0}a_k$ |
 | $e^{jM\omega_0t}x(t)$ | $a_{k-M}$ |
@@ -1708,6 +1712,7 @@ Assume all signals use the same fundamental frequency unless stated otherwise.
 | $x(t)y(t)$ | $\sum_m a_mb_{k-m}$ |
 | $x(t)\circledast_Ty(t)$ | $Ta_kb_k$ |
 | $x^*(t)$ | $a_{-k}^*$ |
+
 :::
 :::
 
@@ -1732,5 +1737,1737 @@ Assume all signals use the same fundamental frequency unless stated otherwise.
 - 时域周期卷积对应系数的逐点相乘。
 - 实信号的傅里叶系数具有共轭对称性。
 - Parseval 关系表示时域与谐波表示之间的平均功率守恒。
+:::
+:::
+
+### 3.5 Fourier Series Representation of DT Periodic Signals
+
+#### 3.5.1 DT Periodic Signals and Harmonics
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+A discrete-time signal is periodic with period $N\in\mathbb Z_{>0}$ if
+:::
+
+::: {.bi-zh lang="zh-CN"}
+若离散时间信号存在正整数周期 $N$，使得
+:::
+:::
+
+$$
+x[n+N]=x[n],\qquad \forall n\in\mathbb Z.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The smallest positive period is the fundamental period. For $N>1$, define the fundamental angular frequency by
+:::
+
+::: {.bi-zh lang="zh-CN"}
+最小正周期称为基波周期。当 $N>1$ 时，定义基波角频率为
+:::
+:::
+
+$$
+\omega_0=\frac{2\pi}{N}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For the constant sequence with fundamental period $N=1$, the only distinct harmonic is the zero-frequency component, so it is convenient to take $\omega_0=0$.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于基波周期为 $N=1$ 的常数序列，唯一不同的谐波是零频率分量，因此通常取 $\omega_0=0$。
+:::
+:::
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The $k$th DT harmonic is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+第 $k$ 个离散时间谐波为
+:::
+:::
+
+$$
+\phi_N^{(k)}[n]
+=e^{jk(2\pi/N)n}
+=e^{jk\omega_0n}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Its fundamental period is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其基波周期为
+:::
+:::
+
+$$
+N_k=\frac{N}{\gcd(N,k)},
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+with the constant case interpreted separately when $N$ divides $k$. Every harmonic frequency is an integer multiple of $\omega_0$, so the family is harmonically related.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+当 $N$ 整除 $k$ 时，对应常数序列的情形需单独理解。所有谐波频率都是 $\omega_0$ 的整数倍，因此这组复指数彼此成谐波关系。
+:::
+:::
+
+#### 3.5.2 Finiteness of the DT Fourier Basis
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Unlike CT harmonics, DT harmonics repeat as the frequency index changes by $N$:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+与连续时间谐波不同，离散时间谐波的频率下标每增加 $N$ 就会重复：
+:::
+:::
+
+$$
+\begin{aligned}
+\phi_N^{(k+rN)}[n]
+&=e^{j(k+rN)(2\pi/N)n}\\
+&=e^{jk(2\pi/N)n}e^{jr2\pi n}\\
+&=\phi_N^{(k)}[n],
+\qquad r\in\mathbb Z.
+\end{aligned}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Therefore, a period-$N$ sequence has only $N$ distinct Fourier basis signals. Let $\langle N\rangle$ denote any set of $N$ consecutive integers, such as
+:::
+
+::: {.bi-zh lang="zh-CN"}
+因此，周期为 $N$ 的序列只有 $N$ 个不同的傅里叶基信号。用 $\langle N\rangle$ 表示任意 $N$ 个连续整数构成的集合，例如
+:::
+:::
+
+$$
+\langle N\rangle=\{0,1,\ldots,N-1\}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Then the complete basis can be represented by
+:::
+
+::: {.bi-zh lang="zh-CN"}
+完整的基可以表示为
+:::
+:::
+
+$$
+\left\{\phi_N^{(k)}[n]:k\in\langle N\rangle\right\}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+This finiteness is the key structural difference between CT and DT Fourier series. A CT Fourier series generally uses infinitely many distinct harmonics, while a DT period-$N$ Fourier series uses exactly $N$ distinct harmonics.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+这种有限性是连续时间与离散时间傅里叶级数之间最重要的结构差异。连续时间傅里叶级数通常使用无限多个不同谐波，而周期为 $N$ 的离散时间傅里叶级数只使用 $N$ 个不同谐波。
+:::
+:::
+
+#### 3.5.3 Orthonormality of DT Harmonics
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For two period-$N$ sequences, define the normalized inner product over one period by
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于两个周期为 $N$ 的序列，定义一个周期上的归一化内积为
+:::
+:::
+
+$$
+\langle x,y\rangle
+=\frac1N\sum_{n\in\langle N\rangle}x[n]y^*[n].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The $N$ distinct harmonics form an orthonormal basis:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+这 $N$ 个不同谐波构成一组正交归一基：
+:::
+:::
+
+$$
+\boxed{
+\left\langle\phi_N^{(k)},\phi_N^{(m)}\right\rangle
+=\delta[k-m]
+},
+\qquad k,m\in\langle N\rangle.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For $k=m$, every term in the inner-product sum equals $1$. For $k\ne m$, the finite geometric sum gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+当 $k=m$ 时，内积求和中的每一项都等于 $1$。当 $k\ne m$ 时，有限几何级数给出
+:::
+:::
+
+$$
+\frac1N\sum_{n=0}^{N-1}e^{j(k-m)(2\pi/N)n}=0.
+$$
+
+#### 3.5.4 DT Fourier-Series Analysis and Synthesis
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Every period-$N$ sequence has the finite synthesis equation
+:::
+
+::: {.bi-zh lang="zh-CN"}
+任意周期为 $N$ 的序列都具有有限项综合方程
+:::
+:::
+
+$$
+\boxed{
+x[n]=\sum_{k\in\langle N\rangle}a_ke^{jk\omega_0n}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Orthonormality gives the analysis equation
+:::
+
+::: {.bi-zh lang="zh-CN"}
+由正交归一性可得分析方程
+:::
+:::
+
+$$
+\boxed{
+a_k=\frac1N\sum_{n\in\langle N\rangle}
+x[n]e^{-jk\omega_0n}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Both sums may be taken over any $N$ consecutive integers. Because the basis and all sums are finite, DT Fourier series has no convergence problem for a periodic sequence.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+两个求和都可以在任意 $N$ 个连续整数上进行。由于基和所有求和都是有限的，离散时间周期序列的傅里叶级数不存在收敛性问题。
+:::
+:::
+
+#### 3.5.5 Periodicity of the Coefficient Sequence
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Since $\phi_N^{(k+rN)}[n]=\phi_N^{(k)}[n]$, the Fourier coefficients may be extended periodically in $k$:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+由于 $\phi_N^{(k+rN)}[n]=\phi_N^{(k)}[n]$，傅里叶系数可以在下标 $k$ 上作周期延拓：
+:::
+:::
+
+$$
+\boxed{a_{k+rN}=a_k},
+\qquad r\in\mathbb Z.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Only one block of $N$ consecutive coefficients is used in the synthesis equation. Thus, DT Fourier series establishes a correspondence between two period-$N$ sequences: the time-domain sequence $x[n]$ and the frequency-domain coefficient sequence $a_k$.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+综合方程只使用任意一组连续的 $N$ 个系数。因此，离散时间傅里叶级数在两个周期为 $N$ 的序列之间建立对应关系：时域序列 $x[n]$ 与频域系数序列 $a_k$。
+:::
+:::
+
+#### 3.5.6 Example: Periodic Sinusoid
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Consider
+:::
+
+::: {.bi-zh lang="zh-CN"}
+考虑
+:::
+:::
+
+$$
+x[n]=\cos\left(\frac{6\pi}{5}n+\frac{\pi}{5}\right).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The fundamental period is $N=5$, so $\omega_0=2\pi/5$. Euler's identity gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其基波周期为 $N=5$，因此 $\omega_0=2\pi/5$。利用 Euler 恒等式可得
+:::
+:::
+
+$$
+x[n]
+=\frac12e^{j\pi/5}e^{j3\omega_0n}
++\frac12e^{-j\pi/5}e^{-j3\omega_0n}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Using the coefficient interval $\langle5\rangle=\{0,1,2,3,4\}$ and the identity $-3\equiv2\pmod5$,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+选取系数区间 $\langle5\rangle=\{0,1,2,3,4\}$，并利用 $-3\equiv2\pmod5$，可得
+:::
+:::
+
+$$
+a_3=\frac12e^{j\pi/5},
+\qquad
+a_2=\frac12e^{-j\pi/5},
+\qquad
+a_0=a_1=a_4=0.
+$$
+
+#### 3.5.7 Example: Periodic Rectangular Sequence
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Within one period, define a rectangular sequence by
+:::
+
+::: {.bi-zh lang="zh-CN"}
+在一个周期内定义矩形序列
+:::
+:::
+
+$$
+x[n]=
+\begin{cases}
+1, & -N_1\le n\le N_1,\\
+0, & N_1<n<N-N_1,
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+and extend it periodically with period $N$. The coefficient is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+并将其以周期 $N$ 作周期延拓。其系数为
+:::
+:::
+
+$$
+a_k=\frac1N\sum_{n=-N_1}^{N_1}e^{-jk(2\pi/N)n}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+If $k$ is a multiple of $N$, every exponential equals $1$, so
+:::
+
+::: {.bi-zh lang="zh-CN"}
+若 $k$ 是 $N$ 的整数倍，则每个复指数项都等于 $1$，因此
+:::
+:::
+
+$$
+a_k=\frac{2N_1+1}{N}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Otherwise, evaluating the finite geometric sum gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+否则，计算有限几何级数可得
+:::
+:::
+
+$$
+\boxed{
+a_k=\frac1N
+\frac{\sin\left[\dfrac{2\pi k}{N}\left(N_1+\dfrac12\right)\right]}
+{\sin\left(\dfrac{\pi k}{N}\right)}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The coefficient sequence is periodic in $k$ with period $N$. As the rectangular pulse occupies more samples, its frequency-domain main lobe becomes narrower, reflecting the same time-width and frequency-width tradeoff seen in the CT case.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+该系数序列关于 $k$ 以 $N$ 为周期。随着矩形脉冲占据更多样本，其频域主瓣会变窄，这体现了与连续时间情形相同的时宽与频宽权衡。
+:::
+:::
+
+#### 3.5.8 Key Points
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+- A period-$N$ DT signal has exactly $N$ distinct complex-exponential harmonics.
+- Both the signal $x[n]$ and its coefficient sequence $a_k$ are periodic with period $N$ in their respective indices.
+- Analysis and synthesis use finite sums over any $N$ consecutive integers.
+- DT Fourier series therefore has no convergence issue for periodic sequences.
+- Frequency indices that differ by a multiple of $N$ describe the same DT harmonic.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+- 周期为 $N$ 的离散时间信号恰好具有 $N$ 个不同的复指数谐波。
+- 信号 $x[n]$ 与系数序列 $a_k$ 分别关于各自下标以 $N$ 为周期。
+- 分析与综合都在任意 $N$ 个连续整数上使用有限求和。
+- 因此，离散时间周期序列的傅里叶级数不存在收敛性问题。
+- 相差 $N$ 的整数倍的频率下标表示同一个离散时间谐波。
+:::
+:::
+
+### 3.6 Properties of DT Fourier Series
+
+#### 3.6.1 Linearity and Index Convention
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Use the correspondence
+:::
+
+::: {.bi-zh lang="zh-CN"}
+采用如下对应记号：
+:::
+:::
+
+$$
+x[n]\ \xleftrightarrow{\mathrm{FS}}\ a_k,
+\qquad
+y[n]\ \xleftrightarrow{\mathrm{FS}}\ b_k,
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+where both signals have period $N$. Linearity gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其中两个信号都具有周期 $N$。由线性性可得
+:::
+:::
+
+$$
+\boxed{
+Ax[n]+By[n]
+\ \xleftrightarrow{\mathrm{FS}}\
+Aa_k+Bb_k
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+All coefficient indices in this section are interpreted modulo $N$. For example, $a_{k-m}$ denotes the periodic extension of the coefficient sequence.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+本节中的所有系数下标都按模 $N$ 理解。例如，$a_{k-m}$ 表示系数序列的周期延拓。
+:::
+:::
+
+#### 3.6.2 Time and Frequency Shifting
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+A shift by an integer $n_0$ in time introduces a phase factor:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+时域中移位整数个样本 $n_0$ 会引入相位因子：
+:::
+:::
+
+$$
+\boxed{
+x[n-n_0]
+\ \xleftrightarrow{\mathrm{FS}}\
+e^{-jk\omega_0n_0}a_k
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Multiplication by a harmonic complex exponential shifts the coefficient sequence circularly:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+乘以谐波复指数会使系数序列发生循环移位：
+:::
+:::
+
+$$
+\boxed{
+e^{jm\omega_0n}x[n]
+\ \xleftrightarrow{\mathrm{FS}}\
+a_{k-m}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The shift is circular because the coefficient sequence has period $N$.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+由于系数序列以 $N$ 为周期，该频率移位是循环移位。
+:::
+:::
+
+#### 3.6.3 Time Reversal, Conjugation, and Symmetry
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Time reversal and complex conjugation obey
+:::
+
+::: {.bi-zh lang="zh-CN"}
+时间反转与复共轭满足
+:::
+:::
+
+$$
+\boxed{x[-n]\ \xleftrightarrow{\mathrm{FS}}\ a_{-k}},
+$$
+
+$$
+\boxed{x^*[n]\ \xleftrightarrow{\mathrm{FS}}\ a_{-k}^*}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Consequently:
+
+- $x[n]$ is even if and only if $a_k$ is even.
+- $x[n]$ is odd if and only if $a_k$ is odd.
+- If $x[n]$ is real, then $a_{-k}=a_k^*$.
+- A real even sequence has real even coefficients.
+- A real odd sequence has purely imaginary odd coefficients.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+因此：
+
+- $x[n]$ 为偶序列，当且仅当 $a_k$ 为偶序列。
+- $x[n]$ 为奇序列，当且仅当 $a_k$ 为奇序列。
+- 若 $x[n]$ 为实序列，则 $a_{-k}=a_k^*$。
+- 实偶序列具有实偶系数。
+- 实奇序列具有纯虚奇系数。
+:::
+:::
+
+#### 3.6.4 Integer Time Expansion
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Continuous time allows arbitrary scaling of the independent variable. In discrete time, a natural expansion operation inserts $m-1$ zeros between adjacent samples. For a positive integer $m$, define
+:::
+
+::: {.bi-zh lang="zh-CN"}
+连续时间允许对自变量进行任意尺度变换。在离散时间中，自然的扩展运算是在相邻样本之间插入 $m-1$ 个零。对于正整数 $m$，定义
+:::
+:::
+
+$$
+x_{(m)}[n]=
+\begin{cases}
+x[n/m], & n\text{ is a multiple of }m,\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+If $x[n]$ has period $N$, then $x_{(m)}[n]$ has period $mN$, and
+:::
+
+::: {.bi-zh lang="zh-CN"}
+若 $x[n]$ 的周期为 $N$，则 $x_{(m)}[n]$ 的周期为 $mN$，并且
+:::
+:::
+
+$$
+\boxed{
+x_{(m)}[n]
+\ \xleftrightarrow{\mathrm{FS}}\
+\frac1m a_k
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The new coefficient sequence is interpreted with period $mN$. The operation expands the time-axis period and creates repeated spectral structure within the enlarged coefficient period.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+新的系数序列应按周期 $mN$ 理解。该运算扩大了时域周期，并在扩大的系数周期内产生重复的频谱结构。
+:::
+:::
+
+#### 3.6.5 First Difference
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The first-difference operation is the DT analogue of differentiation:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+一阶差分是离散时间中与微分对应的运算：
+:::
+:::
+
+$$
+\Delta x[n]=x[n]-x[n-1].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Using the time-shift property,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+利用时移性质可得
+:::
+:::
+
+$$
+\boxed{
+\Delta x[n]
+\ \xleftrightarrow{\mathrm{FS}}\
+\left(1-e^{-jk\omega_0}\right)a_k
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The multiplier is zero at $k=0$ and grows toward high DT frequencies, so first difference removes the DC component and emphasizes rapid sample-to-sample changes.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+该乘数在 $k=0$ 处为零，并向离散时间高频方向增大，因此一阶差分会消除直流分量并增强样本之间的快速变化。
+:::
+:::
+
+#### 3.6.6 Running Sum
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Let
+:::
+
+::: {.bi-zh lang="zh-CN"}
+令
+:::
+:::
+
+$$
+y[n]=\sum_{m=n_0}^{n}x[m].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The running sum is periodic if and only if the input has zero average value over one period:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+累加和为周期序列的充要条件是输入在一个周期上的平均值为零：
+:::
+:::
+
+$$
+a_0=0.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+When this condition holds, the non-DC coefficients are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+满足该条件时，非直流系数为
+:::
+:::
+
+$$
+\boxed{
+b_k=\frac{a_k}{1-e^{-jk\omega_0}},
+\qquad k\ne0
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The value of $b_0$ depends on the starting index and the additive constant, just as the DC coefficient of a CT integral depends on its integration constant.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+$b_0$ 的取值取决于起始下标和所加常数，这与连续时间积分的直流系数取决于积分常数相对应。
+:::
+:::
+
+#### 3.6.7 Multiplication and Circular Convolution
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+If $x[n]$ and $y[n]$ have the same period $N$, multiplication in time corresponds to periodic, or circular, convolution of the coefficient sequences:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+若 $x[n]$ 与 $y[n]$ 具有相同周期 $N$，则时域相乘对应系数序列的周期卷积，也称循环卷积：
+:::
+:::
+
+$$
+\boxed{
+x[n]y[n]
+\ \xleftrightarrow{\mathrm{FS}}\
+c_k=\sum_{m\in\langle N\rangle}a_mb_{k-m}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The subtraction $k-m$ is evaluated modulo $N$. In the CT Fourier-series case, the coefficient convolution extends over all integer indices. In the DT case, it is a finite circular convolution because both coefficient sequences are periodic.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+下标差 $k-m$ 按模 $N$ 计算。在连续时间傅里叶级数中，系数卷积遍历所有整数下标；在离散时间情形中，由于两个系数序列都是周期的，因此得到有限循环卷积。
+:::
+:::
+
+#### 3.6.8 Periodic Convolution in Time
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Define the periodic convolution of two period-$N$ sequences by
+:::
+
+::: {.bi-zh lang="zh-CN"}
+定义两个周期为 $N$ 的序列的周期卷积为
+:::
+:::
+
+$$
+(x\circledast_Ny)[n]
+=\sum_{m\in\langle N\rangle}x[m]y[n-m].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Periodic convolution is commutative, associative, and bilinear. Its Fourier-series coefficients satisfy
+:::
+
+::: {.bi-zh lang="zh-CN"}
+周期卷积满足交换律、结合律和双线性，其傅里叶级数系数满足
+:::
+:::
+
+$$
+\boxed{
+x[n]\circledast_Ny[n]
+\ \xleftrightarrow{\mathrm{FS}}\
+Na_kb_k
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The factor $N$ results from the $1/N$ normalization used in the analysis equation and the unnormalized definition of periodic convolution.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+因分析方程采用 $1/N$ 归一化，而周期卷积的定义没有归一化，所以结果中出现因子 $N$。
+:::
+:::
+
+#### 3.6.9 Parseval's Relation
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Parseval's relation equates the average power in one time-domain period with the sum of the powers of the $N$ distinct harmonics:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+Parseval 关系把一个时域周期内的平均功率与 $N$ 个不同谐波的功率之和联系起来：
+:::
+:::
+
+$$
+\boxed{
+\frac1N\sum_{n\in\langle N\rangle}|x[n]|^2
+=\sum_{k\in\langle N\rangle}|a_k|^2
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Each $|a_k|^2$ is the average power carried by one orthonormal harmonic component.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+每个 $|a_k|^2$ 表示一个正交归一谐波分量所携带的平均功率。
+:::
+:::
+
+#### 3.6.10 Property Summary
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+All coefficient indices below are periodic modulo $N$.
+
+| Time-domain operation | DT Fourier-series coefficients |
+| --- | --- |
+| $Ax[n]+By[n]$ | $Aa_k+Bb_k$ |
+| $x[n-n_0]$ | $e^{-jk\omega_0n_0}a_k$ |
+| $e^{jm\omega_0n}x[n]$ | $a_{k-m}$ |
+| $x[-n]$ | $a_{-k}$ |
+| $x^*[n]$ | $a_{-k}^*$ |
+| $x[n]-x[n-1]$ | $(1-e^{-jk\omega_0})a_k$ |
+| Running sum, $a_0=0$ | $a_k/(1-e^{-jk\omega_0})$, $k\ne0$ |
+| $x[n]y[n]$ | $\sum_{m\in\langle N\rangle}a_mb_{k-m}$ |
+| $x[n]\circledast_Ny[n]$ | $Na_kb_k$ |
+
+:::
+
+::: {.bi-zh lang="zh-CN"}
+下表中的所有系数下标均按模 $N$ 周期延拓。
+
+| 时域运算 | 离散时间傅里叶级数系数 |
+| --- | --- |
+| $Ax[n]+By[n]$ | $Aa_k+Bb_k$ |
+| $x[n-n_0]$ | $e^{-jk\omega_0n_0}a_k$ |
+| $e^{jm\omega_0n}x[n]$ | $a_{k-m}$ |
+| $x[-n]$ | $a_{-k}$ |
+| $x^*[n]$ | $a_{-k}^*$ |
+| $x[n]-x[n-1]$ | $(1-e^{-jk\omega_0})a_k$ |
+| 累加和，$a_0=0$ | $a_k/(1-e^{-jk\omega_0})$，$k\ne0$ |
+| $x[n]y[n]$ | $\sum_{m\in\langle N\rangle}a_mb_{k-m}$ |
+| $x[n]\circledast_Ny[n]$ | $Na_kb_k$ |
+
+:::
+:::
+
+### 3.7 Fourier Series and LTI Systems
+
+#### 3.7.1 Frequency Response
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Complex exponentials are eigenfunctions of LTI systems. For a CT LTI system with impulse response $h(t)$,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+复指数是 LTI 系统的特征函数。对于冲激响应为 $h(t)$ 的连续时间 LTI 系统，
+:::
+:::
+
+$$
+e^{j\omega t}
+\longrightarrow
+H(j\omega)e^{j\omega t},
+$$
+
+$$
+\boxed{
+H(j\omega)=\int_{-\infty}^{\infty}h(t)e^{-j\omega t}\,dt
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For a DT LTI system with impulse response $h[n]$,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于冲激响应为 $h[n]$ 的离散时间 LTI 系统，
+:::
+:::
+
+$$
+e^{j\omega n}
+\longrightarrow
+H(e^{j\omega})e^{j\omega n},
+$$
+
+$$
+\boxed{
+H(e^{j\omega})
+=\sum_{n=-\infty}^{\infty}h[n]e^{-j\omega n}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The functions $H(j\omega)$ and $H(e^{j\omega})$ are the CT and DT frequency responses. Their magnitudes determine how the system scales sinusoidal components, while their phases determine the phase shifts.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+函数 $H(j\omega)$ 和 $H(e^{j\omega})$ 分别称为连续时间与离散时间频率响应。其幅度决定系统对正弦分量的缩放，其相位决定相移。
+:::
+:::
+
+#### 3.7.2 Periodic Inputs through LTI Systems
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Let a CT periodic input have Fourier series
+:::
+
+::: {.bi-zh lang="zh-CN"}
+设连续时间周期输入的傅里叶级数为
+:::
+:::
+
+$$
+x(t)=\sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The output is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+则输出为
+:::
+:::
+
+$$
+\boxed{
+y(t)=\sum_{k=-\infty}^{\infty}
+H(jk\omega_0)a_ke^{jk\omega_0t}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Thus,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+因此，
+:::
+:::
+
+$$
+x(t)\ \xleftrightarrow{\mathrm{FS}}\ a_k
+\quad\Longrightarrow\quad
+y(t)\ \xleftrightarrow{\mathrm{FS}}\ H(jk\omega_0)a_k.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Similarly, for a period-$N$ DT input,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+类似地，对于周期为 $N$ 的离散时间输入，
+:::
+:::
+
+$$
+\boxed{
+x[n]\ \xleftrightarrow{\mathrm{FS}}\ a_k
+\quad\Longrightarrow\quad
+y[n]\ \xleftrightarrow{\mathrm{FS}}\
+H(e^{jk\omega_0})a_k
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The output has the same period as the input, although its fundamental period may become smaller if the system eliminates some harmonics. An LTI system cannot create new frequency components. It can only scale or phase-shift the components already present, and it may remove components by assigning them zero gain.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+输出具有与输入相同的周期，但若系统消除了某些谐波，输出的基波周期可能变小。LTI 系统不能产生新的频率分量，只能缩放或移相输入中已有的分量，也可以通过赋予零增益来消除某些分量。
+:::
+:::
+
+#### 3.7.3 Frequency-Shaping and Frequency-Selective Filters
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+An LTI system acts as a filter through its frequency response. Two useful viewpoints are:
+
+- A **frequency-shaping filter** changes the relative magnitudes or phases across the spectrum. An audio equalizer is a common example.
+- A **frequency-selective filter** passes one frequency range with little distortion and strongly attenuates another range.
+
+Lowpass, highpass, and bandpass filters are standard frequency-selective filters.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+LTI 系统通过其频率响应实现滤波。常用的两种观点为：
+
+- **频谱整形滤波器**改变频谱中不同分量的相对幅度或相位，音频均衡器是常见例子。
+- **选频滤波器**让某一频率范围近似无失真地通过，同时显著衰减另一个频率范围。
+
+低通、高通和带通滤波器是标准的选频滤波器。
+:::
+:::
+
+#### 3.7.4 CT Differentiator
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For the ideal differentiator
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于理想微分器
+:::
+:::
+
+$$
+y(t)=x'(t),
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+the impulse response and frequency response are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其冲激响应和频率响应分别为
+:::
+:::
+
+$$
+h(t)=\delta'(t),
+\qquad
+H(j\omega)=j\omega.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For a periodic input, the output coefficient is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于周期输入，输出系数为
+:::
+:::
+
+$$
+b_k=jk\omega_0a_k.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The differentiator suppresses the DC component and gives larger gain to higher frequencies. For example,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+微分器消除直流分量，并对高频分量赋予更大增益。例如，
+:::
+:::
+
+$$
+x(t)=\sin\left(\frac t2\right)+\frac12\sin(2t)
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+produces
+:::
+
+::: {.bi-zh lang="zh-CN"}
+产生输出
+:::
+:::
+
+$$
+y(t)=\frac12\cos\left(\frac t2\right)+\cos(2t).
+$$
+
+#### 3.7.5 Ideal CT Frequency-Selective Filters
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+An ideal lowpass filter with cutoff frequency $\omega_c$ has frequency response
+:::
+
+::: {.bi-zh lang="zh-CN"}
+截止频率为 $\omega_c$ 的理想低通滤波器具有频率响应
+:::
+:::
+
+$$
+H_{\mathrm{LP}}(j\omega)=
+\begin{cases}
+1, & |\omega|\le\omega_c,\\
+0, & |\omega|>\omega_c.
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+An ideal highpass filter reverses the passband and stopband:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+理想高通滤波器交换通带与阻带：
+:::
+:::
+
+$$
+H_{\mathrm{HP}}(j\omega)=
+\begin{cases}
+0, & |\omega|<\omega_c,\\
+1, & |\omega|\ge\omega_c.
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+An ideal bandpass filter passes frequencies between two cutoffs:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+理想带通滤波器允许两个截止频率之间的分量通过：
+:::
+:::
+
+$$
+H_{\mathrm{BP}}(j\omega)=
+\begin{cases}
+1, & \omega_{c1}\le|\omega|\le\omega_{c2},\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于
+:::
+:::
+
+$$
+x(t)=\sin t+\sin(2t)+\sin(3t)+\sin(4t),
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+an ideal lowpass filter with $\omega_c=2.5$ retains the first two terms, an ideal highpass filter with the same cutoff retains the last two, and an ideal bandpass filter with $\omega_{c1}=1.5$ and $\omega_{c2}=3.5$ retains the components at $2$ and $3$ rad/s.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+截止频率为 $\omega_c=2.5$ 的理想低通滤波器保留前两个分量；相同截止频率的理想高通滤波器保留后两个分量；下、上截止频率分别为 $\omega_{c1}=1.5$ 与 $\omega_{c2}=3.5$ 的理想带通滤波器保留 $2$ 和 $3$ rad/s 分量。
+:::
+:::
+
+#### 3.7.6 RC Lowpass Filter
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For a series $RC$ circuit with the capacitor voltage as output,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于以电容电压作为输出的串联 $RC$ 电路，
+:::
+:::
+
+$$
+RC\frac{dv_C(t)}{dt}+v_C(t)=v_S(t).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Substituting the eigenfunction input $v_S(t)=e^{j\omega t}$ gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+代入特征函数输入 $v_S(t)=e^{j\omega t}$ 可得
+:::
+:::
+
+$$
+\boxed{
+H_{\mathrm{LP}}(j\omega)=\frac{1}{1+j\omega RC}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Its magnitude and phase are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其幅度和相位为
+:::
+:::
+
+$$
+|H_{\mathrm{LP}}(j\omega)|
+=\frac{1}{\sqrt{1+(\omega RC)^2}},
+$$
+
+$$
+\angle H_{\mathrm{LP}}(j\omega)
+=-\arctan(\omega RC).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The impulse and step responses are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其冲激响应与阶跃响应分别为
+:::
+:::
+
+$$
+h(t)=\frac1{RC}e^{-t/(RC)}u(t),
+$$
+
+$$
+s(t)=\left(1-e^{-t/(RC)}\right)u(t).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The time constant is $\tau=RC$. A larger $\tau$ narrows the effective lowpass range and slows the transient response. A smaller $\tau$ passes a wider range of frequencies and responds faster.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+时间常数为 $\tau=RC$。较大的 $\tau$ 会缩窄有效低通范围并减慢瞬态响应；较小的 $\tau$ 会允许更宽的频率范围通过，并产生更快的响应。
+:::
+:::
+
+#### 3.7.7 RC Highpass Filter
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Using the resistor voltage as output gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+若改用电阻电压作为输出，则
+:::
+:::
+
+$$
+RC\frac{dv_R(t)}{dt}+v_R(t)
+=RC\frac{dv_S(t)}{dt}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The frequency response is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+频率响应为
+:::
+:::
+
+$$
+\boxed{
+H_{\mathrm{HP}}(j\omega)
+=\frac{j\omega RC}{1+j\omega RC}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Its magnitude is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其幅度为
+:::
+:::
+
+$$
+|H_{\mathrm{HP}}(j\omega)|
+=\frac{|\omega|RC}{\sqrt{1+(\omega RC)^2}}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The step and impulse responses are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其阶跃响应与冲激响应分别为
+:::
+:::
+
+$$
+s(t)=e^{-t/(RC)}u(t),
+$$
+
+$$
+h(t)=\delta(t)-\frac1{RC}e^{-t/(RC)}u(t).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+A larger time constant passes a broader range of high-frequency components but produces a slower transient. A smaller time constant gives a faster transient while attenuating a larger portion of the lower-frequency range.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+较大的时间常数允许更宽的高频范围通过，但会产生更慢的瞬态；较小的时间常数产生更快的瞬态，同时会衰减更大范围的低频分量。
+:::
+:::
+
+#### 3.7.8 Frequencies in Discrete Time
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+DT complex exponentials are periodic in frequency:
+:::
+
+::: {.bi-zh lang="zh-CN"}
+离散时间复指数关于频率具有周期性：
+:::
+:::
+
+$$
+e^{j(\omega+2\pi r)n}=e^{j\omega n},
+\qquad r\in\mathbb Z.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Therefore, it is sufficient to describe a DT frequency response over any interval of length $2\pi$, commonly $[-\pi,\pi)$ or $[0,2\pi)$. Low frequencies lie near $2\pi r$, where adjacent samples vary slowly. High frequencies lie near $(2r+1)\pi$, where the sequence alternates rapidly.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+因此，只需在任意长度为 $2\pi$ 的区间上描述离散时间频率响应，常用区间为 $[-\pi,\pi)$ 或 $[0,2\pi)$。低频位于 $2\pi r$ 附近，此时相邻样本变化缓慢；高频位于 $(2r+1)\pi$ 附近，此时序列快速交替变化。
+:::
+:::
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For a period-$N$ signal, the distinct harmonic frequencies are $N$ equally spaced points on the unit circle. Points near $e^{j0}=1$ represent low frequencies, while points near $e^{j\pi}=-1$ represent high frequencies.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于周期为 $N$ 的信号，$N$ 个不同谐波频率对应单位圆上等间隔分布的 $N$ 个点。靠近 $e^{j0}=1$ 的点表示低频，靠近 $e^{j\pi}=-1$ 的点表示高频。
+:::
+:::
+
+#### 3.7.9 Ideal DT Frequency-Selective Filters
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Within the principal interval $-\pi\le\omega\le\pi$, an ideal DT lowpass filter is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+在主值区间 $-\pi\le\omega\le\pi$ 内，理想离散时间低通滤波器为
+:::
+:::
+
+$$
+H_{\mathrm{LP}}(e^{j\omega})=
+\begin{cases}
+1, & |\omega|\le\omega_c,\\
+0, & \omega_c<|\omega|\le\pi.
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The ideal highpass and bandpass responses are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+理想高通与带通响应分别为
+:::
+:::
+
+$$
+H_{\mathrm{HP}}(e^{j\omega})=
+\begin{cases}
+0, & |\omega|<\omega_c,\\
+1, & \omega_c\le|\omega|\le\pi,
+\end{cases}
+$$
+
+$$
+H_{\mathrm{BP}}(e^{j\omega})=
+\begin{cases}
+1, & \omega_{c1}\le|\omega|\le\omega_{c2},\\
+0, & \text{otherwise}.
+\end{cases}
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Each DT frequency response repeats with period $2\pi$ outside the principal interval.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+每个离散时间频率响应在主值区间之外都以 $2\pi$ 为周期重复。
+:::
+:::
+
+#### 3.7.10 First-Order Recursive DT Filter
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Consider the causal difference equation
+:::
+
+::: {.bi-zh lang="zh-CN"}
+考虑因果差分方程
+:::
+:::
+
+$$
+y[n]-ay[n-1]=x[n].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For input $x[n]=e^{j\omega n}$, the frequency response is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于输入 $x[n]=e^{j\omega n}$，频率响应为
+:::
+:::
+
+$$
+\boxed{
+H(e^{j\omega})=\frac{1}{1-ae^{-j\omega}}
+},
+\qquad |a|<1.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The stability condition $|a|<1$ also guarantees convergence of the frequency-response sum. Writing $a=|a|e^{j\phi}$ gives
+:::
+
+::: {.bi-zh lang="zh-CN"}
+稳定条件 $|a|<1$ 同时保证频率响应级数收敛。写成 $a=|a|e^{j\phi}$ 后可得
+:::
+:::
+
+$$
+|H(e^{j\omega})|
+=\frac{1}{\sqrt{1+|a|^2-2|a|\cos(\omega-\phi)}}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The response peaks near $\omega=\phi$. For real positive $a$, the peak is near $0$, so the system behaves as a lowpass filter. For real negative $a$, the peak is near $\pi$, so it behaves as a highpass filter.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+响应在 $\omega=\phi$ 附近达到峰值。若 $a$ 为正实数，峰值位于 $0$ 附近，系统表现为低通滤波器；若 $a$ 为负实数，峰值位于 $\pi$ 附近，系统表现为高通滤波器。
+:::
+:::
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The impulse and step responses are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其冲激响应与阶跃响应分别为
+:::
+:::
+
+$$
+h[n]=a^nu[n],
+$$
+
+$$
+s[n]=\frac{1-a^{n+1}}{1-a}u[n].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+This is an infinite impulse response, or IIR, filter. As $|a|$ approaches $1$, the passband becomes narrower and the time response decays more slowly. A smaller $|a|$ gives a broader frequency response and a faster transient.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+这是一个无限冲激响应（IIR）滤波器。当 $|a|$ 接近 $1$ 时，通带变窄，时域响应衰减更慢；较小的 $|a|$ 会产生更宽的频率响应和更快的瞬态。
+:::
+:::
+
+#### 3.7.11 Moving-Average Lowpass Filter
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+A moving-average filter with $M_1$ future samples and $M_2$ past samples is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+包含 $M_1$ 个未来样本和 $M_2$ 个过去样本的移动平均滤波器为
+:::
+:::
+
+$$
+y[n]=\frac{1}{M_1+M_2+1}
+\sum_{k=-M_1}^{M_2}x[n-k].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Its FIR impulse response is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其有限冲激响应（FIR）为
+:::
+:::
+
+$$
+h[n]=\frac{1}{M_1+M_2+1}
+\sum_{k=-M_1}^{M_2}\delta[n-k].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Let $L=M_1+M_2+1$. Its frequency response is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+令 $L=M_1+M_2+1$，其频率响应为
+:::
+:::
+
+$$
+\boxed{
+H(e^{j\omega})
+=e^{j(M_1-M_2)\omega/2}
+\frac{\sin(L\omega/2)}{L\sin(\omega/2)}
+}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The normalized average has unit gain at $\omega=0$. Increasing $L$ narrows the main lobe, suppresses a wider range of nonzero frequencies, and produces a smoother output.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+归一化平均在 $\omega=0$ 处具有单位增益。增大 $L$ 会使主瓣变窄，抑制更宽范围的非零频率，并产生更平滑的输出。
+:::
+:::
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For $M_1=0$ and $M_2=1$,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+当 $M_1=0$、$M_2=1$ 时，
+:::
+:::
+
+$$
+y[n]=\frac12\big(x[n]+x[n-1]\big),
+$$
+
+$$
+H(e^{j\omega})=e^{-j\omega/2}\cos(\omega/2).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+This filter passes a constant sequence unchanged and completely removes the alternating sequence $(-1)^n$ because $H(e^{j\pi})=0$.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+该滤波器会让常数序列保持不变，并因 $H(e^{j\pi})=0$ 而完全消除交替序列 $(-1)^n$。
+:::
+:::
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+For the symmetric three-point average, $M_1=M_2=1$,
+:::
+
+::: {.bi-zh lang="zh-CN"}
+对于对称三点平均，即 $M_1=M_2=1$，
+:::
+:::
+
+$$
+y[n]=\frac13\big(x[n+1]+x[n]+x[n-1]\big),
+$$
+
+$$
+H(e^{j\omega})
+=\frac13+\frac23\cos\omega.
+$$
+
+#### 3.7.12 Causality and Delay of Moving Averages
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The centered moving average
+:::
+
+::: {.bi-zh lang="zh-CN"}
+中心移动平均
+:::
+:::
+
+$$
+y_1[n]=\frac{1}{2M+1}\sum_{k=-M}^{M}x[n-k]
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+is noncausal because it uses future samples. A realizable causal version is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+由于使用未来样本，因此是非因果的。可实现的因果版本为
+:::
+:::
+
+$$
+y_2[n]=\frac{1}{2M+1}\sum_{k=0}^{2M}x[n-k].
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The two outputs satisfy
+:::
+
+::: {.bi-zh lang="zh-CN"}
+两个输出满足
+:::
+:::
+
+$$
+\boxed{y_2[n]=y_1[n-M]}.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The causal realization adds a delay of $M$ samples without changing the magnitude response. A larger window yields stronger smoothing and a narrower passband, but also increases delay and makes the response more sluggish.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+因果实现增加了 $M$ 个样本的延时，但不改变幅频响应。更大的窗口带来更强的平滑作用和更窄的通带，同时也增加延时，使响应更迟缓。
+:::
+:::
+
+#### 3.7.13 First-Difference Highpass Filter
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The scaled first-difference filter is
+:::
+
+::: {.bi-zh lang="zh-CN"}
+缩放后的一阶差分滤波器为
+:::
+:::
+
+$$
+y[n]=\frac12\big(x[n]-x[n-1]\big).
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+Its impulse response and frequency response are
+:::
+
+::: {.bi-zh lang="zh-CN"}
+其冲激响应与频率响应分别为
+:::
+:::
+
+$$
+h[n]=\frac12\big(\delta[n]-\delta[n-1]\big),
+$$
+
+$$
+\boxed{
+H(e^{j\omega})
+=\frac12(1-e^{-j\omega})
+=je^{-j\omega/2}\sin(\omega/2)
+}.
+$$
+
+$$
+|H(e^{j\omega})|=|\sin(\omega/2)|.
+$$
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+The filter eliminates constants because $H(e^{j0})=0$ and gives unit magnitude to the highest DT frequency because $|H(e^{j\pi})|=1$. It therefore acts as a highpass filter.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+由于 $H(e^{j0})=0$，该滤波器会消除常数分量；又因为 $|H(e^{j\pi})|=1$，它对最高离散时间频率具有单位幅度增益。因此，该系统表现为高通滤波器。
+:::
+:::
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+In image processing, applying differences along horizontal and vertical directions suppresses slowly varying regions and emphasizes abrupt intensity changes. This makes first differences useful for edge detection.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+在图像处理中，沿水平和垂直方向应用差分会抑制缓慢变化区域，并增强亮度的突变，因此一阶差分可用于边缘检测。
+:::
+:::
+
+#### 3.7.14 Chapter Summary
+
+::: {.bi-pair}
+::: {.bi-en lang="en"}
+- Complex exponentials diagonalize LTI-system operations: each frequency component is multiplied by the frequency response at that frequency.
+- CT periodic signals generally use infinitely many distinct harmonics, while a period-$N$ DT signal uses exactly $N$ distinct harmonics.
+- DT Fourier coefficients are periodic in their frequency index, so multiplication produces circular convolution in the coefficient domain.
+- LTI filters reshape a spectrum without creating new frequency components.
+- Ideal filters specify exact passbands and stopbands, while practical RC, recursive, moving-average, and difference filters produce gradual frequency responses.
+- Frequency selectivity and transient speed are linked: narrower passbands usually correspond to longer or slower time-domain responses.
+:::
+
+::: {.bi-zh lang="zh-CN"}
+- 复指数使 LTI 系统运算对角化：每个频率分量只需乘以该频率处的频率响应。
+- 连续时间周期信号通常使用无限多个不同谐波，而周期为 $N$ 的离散时间信号恰好使用 $N$ 个不同谐波。
+- 离散时间傅里叶系数关于频率下标周期重复，因此时域相乘会在系数域产生循环卷积。
+- LTI 滤波器能够重塑频谱，但不能产生新的频率分量。
+- 理想滤波器规定精确的通带与阻带，而实际的 RC、递归、移动平均和差分滤波器具有渐变的频率响应。
+- 选频能力与瞬态速度彼此关联：更窄的通带通常对应更长或更慢的时域响应。
 :::
 :::

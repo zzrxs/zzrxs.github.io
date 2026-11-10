@@ -1,6 +1,6 @@
 ---
 title: Signals and Systems Intro
-date: 2026-09-22 13:46:11
+date: 2026-09-21 13:46:11
 updated: 2026-10-18
 math: true
 categories:
