@@ -1,6 +1,6 @@
 ---
 title: "Beginning of All"
-date: 2026-09-21 21:00:00
+date: 2026-09-20 21:00:00
 updated:
 categories:
   - Personal

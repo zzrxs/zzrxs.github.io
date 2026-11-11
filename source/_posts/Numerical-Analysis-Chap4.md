@@ -10,7 +10,7 @@ tags:
   - Romberg
   - Gauss Quadrature
   - Numerical Differentiation
-description: Numerical Analysis Course Notes (4-Starting from interpolatory quadrature, systematically derive the Newton–Cotes, composite quadrature, Romberg and Gaussian quadrature formulas, and discuss interpolatory numerical differentiation as well as Richardson extrapolation.)
+description: Numerical Analysis Course Notes (4-Starting from interpolatory quadrature, systematically derive the Newton–Cotes, composite quadrature, Romberg and Gaussian quadrature formulas.)
 math: true
 ---
 
