@@ -1,16 +1,16 @@
 ---
-title: 数值分析（四）：数值积分与数值微分
+title: Numerical Integration and Numerical Differentiation
 date: 2026-11-10 15:31:29
 updated: 2026-11-10
 categories:
-  - 数值分析
+  - Numerical Analysis
 tags:
-  - 数值积分
+  - Numerical Integration
   - Newton-Cotes
   - Romberg
-  - Gauss求积
-  - 数值微分
-description: 从插值型求积出发，系统推导 Newton-Cotes、复化求积、Romberg 与 Gauss 型求积公式，并讨论插值型数值微分及 Richardson 外推。
+  - Gauss Quadrature
+  - Numerical Differentiation
+description: Numerical Analysis Course Notes (4-Starting from interpolatory quadrature, systematically derive the Newton–Cotes, composite quadrature, Romberg and Gaussian quadrature formulas, and discuss interpolatory numerical differentiation as well as Richardson extrapolation.)
 math: true
 ---
 
@@ -632,7 +632,7 @@ $$
 逐次二分得到 PPT 中的结果：
 
 | $n$ | $T_n$ | $n$ | $T_n$ |
-|---:|---:|---:|---:|
+| ---: | ---: | ---: | ---: |
 | 1 | 3.0000000 | 32 | 3.14142989 |
 | 2 | 3.1000000 | 64 | 3.14155196 |
 | 4 | 3.13117647 | 128 | 3.14158248 |
@@ -742,12 +742,12 @@ $$
 再由递推得到 PPT 中的 Romberg 表：
 
 | 层 $k$ | 梯形列 | 一次外推 | 二次外推 | 三次外推 | 四次外推 | 五次外推 |
-|---:|---:|---:|---:|---:|---:|---:|
-| 0 | 0.50000000 |  |  |  |  |  |
-| 1 | 0.42677670 | 0.40236893 |  |  |  |  |
-| 2 | 0.40701811 | 0.40043192 | 0.40030278 |  |  |  |
-| 3 | 0.40181246 | 0.40007725 | 0.40005361 | 0.40004965 |  |  |
-| 4 | 0.40046340 | 0.40001371 | 0.40000948 | 0.40000878 | 0.40000862 |  |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 0 | 0.50000000 | | | | | |
+| 1 | 0.42677670 | 0.40236893 | | | | |
+| 2 | 0.40701811 | 0.40043192 | 0.40030278 | | | |
+| 3 | 0.40181246 | 0.40007725 | 0.40005361 | 0.40004965 | | |
+| 4 | 0.40046340 | 0.40001371 | 0.40000948 | 0.40000878 | 0.40000862 | |
 | 5 | 0.40011767 | 0.40000243 | 0.40000168 | 0.40000155 | 0.40000152 | 0.40000152 |
 
 从表中可见，外推显著加快了收敛。
@@ -1458,7 +1458,7 @@ $$
 ## 18. 方法对比与使用建议
 
 | 方法 | 典型精度 | 主要优点 | 主要限制 |
-|---|---:|---|---|
+| --- | ---: | --- | --- |
 | 复化梯形 | $O(h^2)$ | 简单、可递推复用节点 | 收敛较慢 |
 | 复化 Simpson | $O(h^4)$ | 精度与成本平衡较好 | 要求函数较光滑 |
 | 复化 Cotes | $O(h^6)$ | 更高阶 | 节点更多，高阶 NC 可能不稳定 |
