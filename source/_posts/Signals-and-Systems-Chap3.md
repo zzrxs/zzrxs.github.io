@@ -1061,7 +1061,7 @@ For the remainder of this section, use the notation
 :::
 
 $$
-x(t)\xleftrightarrow{\mathrm{FS}}\ a_k,
+x(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_k,
 \qquad
 x(t)=\sum_{k=-\infty}^{\infty}a_ke^{jk\omega_0t}.
 $$
@@ -1089,9 +1089,9 @@ If $x(t)$ and $y(t)$ have the same period $T$ and
 :::
 
 $$
-x(t)\xleftrightarrow{\mathrm{FS}}\ a_k,
+x(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_k,
 \qquad
-y(t)\xleftrightarrow{\mathrm{FS}}\ b_k,
+y(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ b_k,
 $$
 
 ::: {.bi-pair}
@@ -1107,7 +1107,7 @@ then
 $$
 \boxed{
 Ax(t)+By(t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 Aa_k+Bb_k
 }.
 $$
@@ -1137,7 +1137,7 @@ A time shift produces a linear phase factor in the Fourier coefficients:
 $$
 \boxed{
 x(t-t_0)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 e^{-jk\omega_0t_0}a_k
 }.
 $$
@@ -1201,7 +1201,7 @@ Multiplication by a harmonic complex exponential shifts the coefficient sequence
 $$
 \boxed{
 e^{jM\omega_0t}x(t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 a_{k-M}
 },
 \qquad M\in\mathbb Z.
@@ -1263,7 +1263,7 @@ Time reversal reverses the coefficient index:
 $$
 \boxed{
 x(-t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 a_{-k}
 }.
 $$
@@ -1302,7 +1302,7 @@ For $\alpha>0$, time scaling preserves the coefficient values but changes the pe
 $$
 \boxed{
 x(\alpha t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 a_k,
 \qquad
 T_{\mathrm{new}}=\frac{T}{\alpha},
@@ -1336,7 +1336,7 @@ Differentiating term by term multiplies the $k$th Fourier coefficient by $jk\ome
 $$
 \boxed{
 \frac{dx(t)}{dt}
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 jk\omega_0a_k
 }.
 $$
@@ -1456,7 +1456,7 @@ If $x(t)$ and $y(t)$ have the same period and coefficient sequences $a_k$ and $b
 $$
 \boxed{
 x(t)y(t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 c_k=\sum_{m=-\infty}^{\infty}a_mb_{k-m}
 }.
 $$
@@ -1530,7 +1530,7 @@ Periodic convolution in time corresponds to pointwise multiplication in the Four
 $$
 \boxed{
 x(t)\circledast_Ty(t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 Ta_kb_k
 }.
 $$
@@ -1560,7 +1560,7 @@ Complex conjugation reverses the coefficient index and conjugates the coefficien
 $$
 \boxed{
 x^*(t)
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 a_{-k}^*
 }.
 $$
@@ -1627,13 +1627,13 @@ Using time reversal and conjugate symmetry,
 
 $$
 \boxed{
-x_e(t)\xleftrightarrow{\mathrm{FS}}\ \operatorname{Re}\{a_k\}
+x_e(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ \operatorname{Re}\{a_k\}
 },
 $$
 
 $$
 \boxed{
-x_o(t)\xleftrightarrow{\mathrm{FS}}\ j\operatorname{Im}\{a_k\}
+x_o(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ j\operatorname{Im}\{a_k\}
 }.
 $$
 
@@ -2164,9 +2164,9 @@ Use the correspondence
 :::
 
 $$
-x[n]\xleftrightarrow{\mathrm{FS}}\ a_k,
+x[n]\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_k,
 \qquad
-y[n]\xleftrightarrow{\mathrm{FS}}\ b_k,
+y[n]\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ b_k,
 $$
 
 ::: {.bi-pair}
@@ -2182,7 +2182,7 @@ where both signals have period $N$. Linearity gives
 $$
 \boxed{
 Ax[n]+By[n]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 Aa_k+Bb_k
 }.
 $$
@@ -2212,7 +2212,7 @@ A shift by an integer $n_0$ in time introduces a phase factor:
 $$
 \boxed{
 x[n-n_0]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 e^{-jk\omega_0n_0}a_k
 }.
 $$
@@ -2230,7 +2230,7 @@ Multiplication by a harmonic complex exponential shifts the coefficient sequence
 $$
 \boxed{
 e^{jm\omega_0n}x[n]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 a_{k-m}
 }.
 $$
@@ -2258,11 +2258,11 @@ Time reversal and complex conjugation obey
 :::
 
 $$
-\boxed{x[-n]\xleftrightarrow{\mathrm{FS}}\ a_{-k}},
+\boxed{x[-n]\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_{-k}},
 $$
 
 $$
-\boxed{x^*[n]\xleftrightarrow{\mathrm{FS}}\ a_{-k}^*}.
+\boxed{x^*[n]\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_{-k}^*}.
 $$
 
 ::: {.bi-pair}
@@ -2320,7 +2320,7 @@ If $x[n]$ has period $N$, then $x_{(m)}[n]$ has period $mN$, and
 $$
 \boxed{
 x_{(m)}[n]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 \frac1m a_k
 }.
 $$
@@ -2364,7 +2364,7 @@ Using the time-shift property,
 $$
 \boxed{
 \Delta x[n]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 \left(1-e^{-jk\omega_0}\right)a_k
 }.
 $$
@@ -2451,7 +2451,7 @@ If $x[n]$ and $y[n]$ have the same period $N$, multiplication in time correspond
 $$
 \boxed{
 x[n]y[n]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 c_k=\sum_{m\in\langle N\rangle}a_mb_{k-m}
 }.
 $$
@@ -2496,7 +2496,7 @@ Periodic convolution is commutative, associative, and bilinear. Its Fourier-seri
 $$
 \boxed{
 x[n]\circledast_Ny[n]
-\xleftrightarrow{\mathrm{FS}}\
+\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 Na_kb_k
 }.
 $$
@@ -2681,9 +2681,9 @@ Thus,
 :::
 
 $$
-x(t)\xleftrightarrow{\mathrm{FS}}\ a_k
+x(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_k
 \quad\Longrightarrow\quad
-y(t)\xleftrightarrow{\mathrm{FS}}\ H(jk\omega_0)a_k.
+y(t)\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ H(jk\omega_0)a_k.
 $$
 
 ::: {.bi-pair}
@@ -2698,9 +2698,9 @@ Similarly, for a period-$N$ DT input,
 
 $$
 \boxed{
-x[n]\xleftrightarrow{\mathrm{FS}}\ a_k
+x[n]\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\ a_k
 \quad\Longrightarrow\quad
-y[n]\xleftrightarrow{\mathrm{FS}}\
+y[n]\mathrel{\overset{\mathrm{FS}}{\longleftrightarrow}}\
 H(e^{jk\omega_0})a_k
 }.
 $$
